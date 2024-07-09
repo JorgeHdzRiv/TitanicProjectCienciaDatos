@@ -37,4 +37,3 @@ El dataset del Titanic es uno de los conjuntos de datos más conocidos y ampliam
     jupyter notebook
 
 5. Abrir y ejecutar las celdas en `notebooks`
-
