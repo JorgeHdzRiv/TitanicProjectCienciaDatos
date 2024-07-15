@@ -29,10 +29,12 @@ El dataset del Titanic es uno de los conjuntos de datos más conocidos y ampliam
     .\env\Scripts\activate
 
 3. Instalar dependencias:
+
     ```bash
     pip install -r requirements.txt
 
 4. Ejecutar Jupyter Notebook:
+
     ```bash
     jupyter notebook
 
