@@ -8,7 +8,9 @@ import requests
 
 # URL del modelo en GitHub
 model_url = 'https://github.com/JorgeHdzRiv/TitanicProjectCienciaDatos/raw/main/models/best_rf_model.joblib'
+scaler_url = 'https://github.com/JorgeHdzRiv/TitanicProjectCienciaDatos/raw/main/models/scaler.joblib'
 model_path = 'model/best_rf_model.joblib'
+scaler_path = 'model/scaler.joblib'
 
 # Crear la carpeta 'modelo' si no existe
 os.makedirs('model', exist_ok=True)
@@ -19,8 +21,15 @@ if not os.path.exists(model_path):
     with open(model_path, 'wb') as file:
         file.write(response.content)
 
+# Descargar el escalador si no existe localmente
+if not os.path.exists(scaler_path):
+    response = requests.get(scaler_url)
+    with open(scaler_path, 'wb') as file:
+        file.write(response.content)
+
 # Cargar el modelo
 model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
 
 # Crear la aplicación Dash
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -46,18 +55,6 @@ app.layout = dbc.Container([
             dcc.Input(id='age', type='number', value=30),
             html.Label('Tarifa'),
             dcc.Input(id='fare', type='number', value=32.204),
-            html.Label('Embarcado (0 = Cherbourg, 1 = Queenstown, 2 = Southampton)'),
-            dcc.Dropdown(
-                id='embarked',
-                options=[
-                    {'label': 'Cherbourg', 'value': 0},
-                    {'label': 'Queenstown', 'value': 1},
-                    {'label': 'Southampton', 'value': 2}
-                ],
-                value=2
-            ),
-            html.Label('Tamaño de la Familia'),
-            dcc.Input(id='family_size', type='number', value=1),
             html.Label('Está Solo (0 = No, 1 = Sí)'),
             dcc.Dropdown(
                 id='is_alone',
@@ -81,11 +78,9 @@ app.layout = dbc.Container([
     State('sex', 'value'),
     State('age', 'value'),
     State('fare', 'value'),
-    State('embarked', 'value'),
-    State('family_size', 'value'),
     State('is_alone', 'value')
 )
-def predict_survival(n_clicks, pclass, sex, age, fare, embarked, family_size, is_alone):
+def predict_survival(n_clicks, pclass, sex, age, fare, is_alone):
     if n_clicks is None:
         return ""
 
@@ -95,12 +90,11 @@ def predict_survival(n_clicks, pclass, sex, age, fare, embarked, family_size, is
         'Sex': [sex],
         'Age': [age],
         'Fare': [fare],
-        'Embarked_C': [1 if embarked == 0 else 0],
-        'Embarked_Q': [1 if embarked == 1 else 0],
-        'Embarked_S': [1 if embarked == 2 else 0],
-        'Family_Size': [family_size],
         'IsAlone': [is_alone]
     })
+
+    # Escalar las columnas 'Age' y 'Fare'
+    input_data[['Age', 'Fare']] = scaler.transform(input_data[['Age', 'Fare']])
 
     # Realizar la predicción
     prediction = model.predict(input_data)[0]
