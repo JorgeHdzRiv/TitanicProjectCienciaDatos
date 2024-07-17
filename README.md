@@ -7,8 +7,11 @@ El dataset del Titanic es uno de los conjuntos de datos más conocidos y ampliam
 ## Estructura del Proyecto
 
 - `env/`: Ambiente virtual (añadir a .gitignore)
+- `dash_app/` : Carpeta que contiene la app inicial de prediccion
 - `data/`: Carpeta para datasets
-- `notebooks/`: Carpeta para Jupyter Notebooks
+- `img/` : Imagenes necesarias
+- `models/` : Modelos creados a partir de los cuadernos
+- `noteboos/`: Carpeta para Jupyter Notebooks
 - `.gitignore`: Archivo para ignorar carpetas/archivos
 - `requirements.txt`: Lista de dependencias
 - `README.md`: Descripción del proyecto
@@ -39,3 +42,16 @@ El dataset del Titanic es uno de los conjuntos de datos más conocidos y ampliam
     jupyter notebook
 
 5. Abrir y ejecutar las celdas en `notebooks`
+
+## Contenidos de los cuadernos
+- `Exploracion_Datos.ipynb`: Exploración de datos iniciales
+- `Limpieza_Datos.ipynb`: Limpieza de datos
+- `Analisis_Visualizacion_Caracteristicas.ipynb`: Analisis de caracteristicas por visualizaciones
+- `Modelado_Predictivo.ipynb`: Modelo de prediccion para la supervivencia
+
+## Extras
+- `Aplicacion Final Alojada en Web`: [App]()
+
+- `Analisis PowerBi`: [Dashboard]()
+
+
