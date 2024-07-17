@@ -50,8 +50,6 @@ El dataset del Titanic es uno de los conjuntos de datos más conocidos y ampliam
 - `Modelado_Predictivo.ipynb`: Modelo de prediccion para la supervivencia
 
 ## Extras
-- `Aplicacion Final Alojada en Web`: [App]()
+- `Aplicacion Final Alojada en Web`: [App Final](https://titanic-app-dash.onrender.com)
 
 - `Analisis PowerBi`: [Dashboard]()
-
-
