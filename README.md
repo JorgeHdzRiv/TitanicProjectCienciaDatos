@@ -52,4 +52,4 @@ El dataset del Titanic es uno de los conjuntos de datos más conocidos y ampliam
 ## Extras
 - `Aplicacion Final Alojada en Web`: [App Final](https://titanic-app-dash.onrender.com)
 
-- `Analisis PowerBi`: [Dashboard]()
+- `Dashboard en Google LookerStudio`: [Dashboard](https://lookerstudio.google.com/reporting/96b21771-2844-46e6-bec0-21bdf6dcbae3)
